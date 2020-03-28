@@ -10,6 +10,9 @@ function getWindowDimensions() {
 }
 
 export default function useWindowDimensions() {
+  // window object does not exist in SSR
+  if (!global.window) return { width: 0, height: 0 }
+
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   )
