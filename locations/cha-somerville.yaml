@@ -1,0 +1,20 @@
+name: CHA Somerville Hospital
+address:
+  line1: 33 Tower St
+  line2: ""
+  city: Somerville
+  state: MA
+  zipcode: "02143"
+geo:
+  longitude: -71.109310
+  latitude: 42.389080
+needs:
+  - N95 Masks (3M or KC Duckbill prefered, but will accept any brand)
+  - Paper masks (with ties or elastic)
+  - Paper protective gowns
+  - Protective glasses/goggles
+  - Touchless digital thermometers
+contact:
+  phone: "+16175914500"
+sources:
+  - https://www.challiance.org/about/newsroom/personal_protective_equipment_ppe_donations_1179
