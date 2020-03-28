@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { graphql } from "gatsby"
 import ReactMapGL, { Popup } from "react-map-gl"
 import { Navbar, Button } from "react-bootstrap"
 import { FaGithub } from "react-icons/fa"
@@ -8,7 +9,7 @@ import InfoBox from "../components/InfoBox"
 
 const mapStyle = "mapbox://styles/milomilo86/ck83uyrnc2n4l1imsjgjwmghu"
 
-const MapPage = () => {
+const MapPage = ({ data }) => {
   const { GATSBY_MABOX_API_ACCESS_TOKEN } = process.env
 
   const { width, height } = useWindowDimensions()
@@ -25,12 +26,12 @@ const MapPage = () => {
     return (
       <Popup
         anchor="top"
-        longitude={location.longitude}
-        latitude={location.latitude}
+        longitude={location.geo.longitude}
+        latitude={location.geo.latitude}
         closeOnClick={false}
         onClose={() => setLocation(null)}
       >
-        <InfoBox />
+        <InfoBox location={location} />
       </Popup>
     )
   }
@@ -57,15 +58,41 @@ const MapPage = () => {
         mapStyle={mapStyle}
         onViewportChange={setViewport}
       >
-        <Marker
-          latitude={42.408428}
-          longitude={-71.011993}
-          onClick={setLocation}
-        />
+        {data.allLocationsYaml.edges.map(({ node: location }) => (
+          <Marker key={location.id} location={location} onClick={setLocation} />
+        ))}
         {renderPopup()}
       </ReactMapGL>
     </div>
   )
 }
+
+export const query = graphql`
+  {
+    allLocationsYaml {
+      edges {
+        node {
+          id
+          name
+          address {
+            line1
+            city
+            state
+            zipcode
+          }
+          geo {
+            longitude
+            latitude
+          }
+          contact {
+            phone
+          }
+          needs
+          sources
+        }
+      }
+    }
+  }
+`
 
 export default MapPage

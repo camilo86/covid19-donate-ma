@@ -1,0 +1,20 @@
+name: CHA Everett Hospital
+address:
+  line1: 103 Garland st
+  line2: ""
+  city: Everett
+  state: MA
+  zipcode: "02151"
+geo:
+  longitude: -71.039749
+  latitude: 42.409340
+needs:
+  - N95 Masks (3M or KC Duckbill prefered, but will accept any brand)
+  - Paper masks (with ties or elastic)
+  - Paper protective gowns
+  - Protective glasses/goggles
+  - Touchless digital thermometers
+contact:
+  phone: "+16173896270"
+sources:
+  - https://www.challiance.org/about/newsroom/personal_protective_equipment_ppe_donations_1179

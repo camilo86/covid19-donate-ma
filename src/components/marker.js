@@ -10,20 +10,28 @@ const style = {
   cursor: "pointer",
 }
 
-const MapMarker = ({ latitude, longitude, onClick }) => (
-  <Marker
-    latitude={latitude}
-    longitude={longitude}
-    offsetLeft={-15}
-    offsetTop={-50}
-  >
-    <Icon style={style} onClick={() => onClick({ latitude, longitude })} />
-  </Marker>
-)
+const MapMarker = ({ location, onClick }) => {
+  const { latitude, longitude } = location.geo
+
+  return (
+    <Marker
+      latitude={latitude}
+      longitude={longitude}
+      offsetLeft={-15}
+      offsetTop={-50}
+    >
+      <Icon style={style} onClick={() => onClick(location)} />
+    </Marker>
+  )
+}
 
 MapMarker.propTypes = {
-  latitude: PropTypes.number.isRequired,
-  longitude: PropTypes.number.isRequired,
+  location: PropTypes.shape({
+    geo: PropTypes.shape({
+      longitude: PropTypes.number.isRequired,
+      latitude: PropTypes.number.isRequired,
+    }),
+  }),
   onClick: PropTypes.func.isRequired,
 }
 
