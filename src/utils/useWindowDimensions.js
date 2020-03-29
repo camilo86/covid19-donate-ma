@@ -1,30 +1,31 @@
-// "Inspiration": https://stackoverflow.com/questions/36862334/get-viewport-window-height-in-reactjs
+// "Inspiration": https://usehooks.com/useWindowSize/
 import { useState, useEffect } from "react"
 
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window
-  return {
-    width,
-    height,
-  }
-}
-
+// Hook
 export default function useWindowDimensions() {
-  // window object does not exist in SSR
-  if (!global.window) return { width: 0, height: 0 }
+  const isClient = typeof window === "object"
 
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  )
+  function getSize() {
+    return {
+      width: isClient ? window.innerWidth : undefined,
+      height: isClient ? window.innerHeight : undefined,
+    }
+  }
+
+  const [windowSize, setWindowSize] = useState(getSize)
 
   useEffect(() => {
+    if (!isClient) {
+      return false
+    }
+
     function handleResize() {
-      setWindowDimensions(getWindowDimensions())
+      setWindowSize(getSize())
     }
 
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
-  }, [])
+  }, []) // Empty array ensures that effect is only run on mount and unmount
 
-  return windowDimensions
+  return windowSize
 }
