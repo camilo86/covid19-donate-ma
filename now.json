@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "GATSBY_MABOX_API_ACCESS_TOKEN": "@gatsby_mabox_api_access_token"
+    }
+  }
+}

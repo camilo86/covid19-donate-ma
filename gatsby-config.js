@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `COVID-19 PPE Donation Map in Massachusetts`,
+    description: `Map showing all places where you can drop off PPE donation in Massachusetts`,
+    author: `Camilo Gonzalez`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
